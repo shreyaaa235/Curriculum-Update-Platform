@@ -6,30 +6,69 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('uploadSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  // File upload logic
+  // File upload
   const dropArea = document.getElementById('dropArea');
   const uploadResponse = document.getElementById('uploadResponse');
   const browseBtn = document.getElementById('browseBtn');
   const fileInput = document.getElementById('curriculumFile');
 
   browseBtn.addEventListener('click', () => fileInput.click());
+
   dropArea.addEventListener('dragover', e => { e.preventDefault(); dropArea.classList.add('drag-over'); });
   dropArea.addEventListener('dragleave', () => dropArea.classList.remove('drag-over'));
+
   dropArea.addEventListener('drop', e => {
     e.preventDefault();
     dropArea.classList.remove('drag-over');
     const file = e.dataTransfer.files[0];
-    uploadResponse.innerHTML = `<div class="alert alert-info">File <b>${file.name}</b> ready to upload!</div>`;
+    uploadFile(file);
   });
+
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    uploadFile(file);
+  });
+
+  function uploadFile(file) {
+    const formData = new FormData();
+    formData.append('curriculumFile', file);
+    uploadResponse.innerHTML = '<div class="alert alert-warning">Uploading...</div>';
+
+    fetch('/api/upload', {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data => uploadResponse.innerHTML = `<div class="alert alert-success">${data.message}</div>`)
+      .catch(() => uploadResponse.innerHTML = `<div class="alert alert-danger">Upload failed. Try again.</div>`);
+  }
 
   // Feedback form
   $('#feedbackForm').submit(function (event) {
-    event.preventDefault();
-    $('#feedbackResponse').html('<div class="alert alert-success">Thank you for your feedback! 🌟</div>');
-    this.reset();
-  });
+  event.preventDefault();
 
-  // Chatbot logic
+  const feedbackData = {
+    name: $('#name').val(),
+    email: $('#email').val(),
+    message: $('#message').val(),
+  };
+
+  fetch('/api/feedback', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(feedbackData)
+  })
+    .then(res => res.json())
+    .then(data => {
+      $('#feedbackResponse').html(`<div class="alert alert-success">${data.message} 🌟</div>`);
+      $('#feedbackForm')[0].reset();
+    })
+    .catch(() => {
+      $('#feedbackResponse').html('<div class="alert alert-danger">Error submitting feedback.</div>');
+    });
+});
+
+  // Chatbot
   const chatbotToggle = document.getElementById('chatbotToggle');
   const chatbot = document.getElementById('chatbot');
   const chatbotBody = document.getElementById('chatbotBody');
