@@ -1,195 +1,153 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500;600;700&display=swap');
 
-html {
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+  color: #2d2d2d;
+  padding-top: 70px;
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #faf7f2;
-  padding-top: 70px;
-  color: #2d2d2d;
-}
-
-/* ===== Navbar ===== */
-.navbar {
-  background-color: #2a3d45;
+/* Navbar */
+.glass-nav {
+  background: rgba(42, 61, 69, 0.85);
+  backdrop-filter: blur(10px);
 }
 .navbar-brand {
   color: #ffbe0b !important;
   font-family: 'Playfair Display', serif;
   font-size: 1.6rem;
-  letter-spacing: 0.5px;
 }
-.nav-link {
-  color: #f1faee !important;
-  font-weight: 500;
-  transition: 0.3s ease;
-}
-.nav-link:hover {
-  color: #ffbe0b !important;
-  transform: translateY(-2px);
-}
+.nav-link { color: #f1faee !important; transition: 0.3s ease; }
+.nav-link:hover { color: #ffbe0b !important; transform: translateY(-2px); }
 
-/* ===== Hero Section ===== */
+/* Hero */
 .hero {
-  background-color: #e6ede7; /* Soft sage green */
-  color: #1a1a1a;
+  background: linear-gradient(120deg, #a8edea, #fed6e3);
   text-align: center;
-  padding: 150px 20px 120px;
-  border-bottom: 3px solid #d8cfc4;
+  padding: 160px 20px 140px;
 }
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 3.2rem;
   color: #264653;
 }
-.hero p {
-  font-size: 1.2rem;
-  margin-top: 15px;
-  color: #4a5759;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
 .btn-hero {
-  background-color: #e76f51;
+  background-color: #ff8c42;
   color: #fff;
-  font-weight: 600;
   padding: 12px 35px;
   border-radius: 30px;
   border: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
-.btn-hero:hover {
-  background-color: #d65a3c;
-  transform: translateY(-2px);
-}
+.btn-hero:hover { background-color: #e67633; transform: scale(1.05); }
 
-/* ===== Upload Section ===== */
-.upload-section {
-  background-color: #ffffff;
+/* Glass cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
   border-radius: 18px;
-  padding: 60px 40px;
-  margin-top: 80px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-}
-.upload-section h2 {
-  font-family: 'Playfair Display', serif;
-  color: #264653;
-  margin-bottom: 25px;
+  padding: 50px 40px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
-/* ===== DROP AREA – KEEP AS IS ===== */
-#dropArea {
-  border: 2px dashed #2a9d8f;
-  background-color: #f9fbf8;
-  padding: 50px;
-  border-radius: 14px;
-  transition: all 0.3s ease;
-  color: #4a4a4a;
-}
-#dropArea:hover {
-  background-color: #e8f5f3;
-  border-color: #21867a;
-}
-#browseBtn {
-  background-color: #2a9d8f;
-  border: none;
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 25px;
-  border-radius: 25px;
-}
-#browseBtn:hover {
-  background-color: #22766e;
-}
-
-/* Upload & Compare Buttons */
-#uploadBtn, #getTrendsBtn, #getAnalyticsBtn {
-  border: none;
-  border-radius: 25px;
-  font-weight: 600;
-  padding: 10px 25px;
-  transition: all 0.3s ease;
-}
-#uploadBtn {
-  background-color: #e76f51;
-  color: #fff;
-}
-#uploadBtn:hover {
-  background-color: #d65a3c;
-}
-#dropArea p, #dropArea span {
-  font-size: 1rem;
-}
-
-/* ===== Section Headings ===== */
-.section h2 {
-  font-family: 'Playfair Display', serif;
-  color: #264653;
-  font-weight: 600;
-}
-
-/* ===== Feedback Section ===== */
+/* Feedback */
 .feedback-section {
-  background-color: #f6d8ae; /* warm beige-orange */
-  padding: 70px 20px;
-  margin-top: 80px;
-  border-top: 3px solid #2a3d45;
-}
-.feedback-section h2 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  color: #1f2b32;
-}
-.feedback-subtitle {
-  font-size: 1.1rem;
-  color: #333;
-  max-width: 600px;
-  margin: 0 auto;
-}
-.feedback-form input,
-.feedback-form textarea {
-  border: 2px solid #c2b8a3;
-  border-radius: 10px;
-  padding: 10px;
-  transition: 0.3s ease;
-}
-.feedback-form input:focus,
-.feedback-form textarea:focus {
-  border-color: #2a9d8f;
-  box-shadow: 0 0 5px rgba(42,157,143,0.3);
-  outline: none;
-}
-
-.feedback-form {
-  text-align: center; /* center-aligns the button */
+  background: linear-gradient(135deg, #ffe0b2, #ffe9d6);
+  padding: 80px 20px;
 }
 .btn-feedback {
-  background-color: #2a9d8f; /* desired background color */
+  background-color: #2a9d8f;
   color: #fff;
-  font-weight: 600;
-  padding: 10px 25px;
   border-radius: 25px;
+  padding: 10px 25px;
   border: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  transition: 0.3s;
 }
+.btn-feedback:hover { background-color: #1e6d65; }
 
-.btn-feedback:hover {
-  background-color: #21766e;
-  transform: translateY(-2px);
-}
-
-/* ===== Footer ===== */
-footer {
-  background-color: #2a3d45;
+/* Footer */
+.glass-footer {
+  background: rgba(42, 61, 69, 0.85);
   color: #fefefe;
   padding: 20px 0;
-  margin-top: 60px;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
+}
+
+/* Chatbot */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  z-index: 1000;
+}
+.chatbot-toggle:hover { transform: scale(1.1); }
+
+.chatbot-container {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 320px;
+  height: 420px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 999;
+}
+.chatbot-header {
+  background: #007bff;
+  color: white;
+  padding: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+.chatbot-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+}
+.chatbot-message {
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+}
+.bot-message {
+  background: #e3f2fd;
+  align-self: flex-start;
+}
+.user-message {
+  background: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+.chatbot-footer {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+.chatbot-footer input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+}
+.chatbot-footer button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
 }
