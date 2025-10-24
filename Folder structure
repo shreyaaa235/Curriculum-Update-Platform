@@ -1,0 +1,13 @@
+curriculum-platform/
+│
+├── backend/
+│   ├── server.js
+│   ├── uploads/        (empty folder for uploaded files)
+│   └── feedback.json   (optional, can be created automatically)
+│
+├── public/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── package.json
