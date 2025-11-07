@@ -2,8 +2,8 @@ curriculum-platform/
 │
 ├── backend/
 │   ├── server.js
-│   ├── uploads/        (empty folder for uploaded files)
-│   └── feedback.json   (optional, can be created automatically)
+│   ├── uploads/                  (stores uploaded files)
+│   ├── industry_trends/          (new folder)              
 │
 ├── public/
 │   ├── index.html
