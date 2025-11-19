@@ -1,0 +1,67 @@
+const path = require('path');
+const Database = require('better-sqlite3');
+
+// Create or open DB file inside backend/data
+const DB_PATH = path.join(__dirname, 'data', 'database.sqlite');
+const db = new Database(DB_PATH);
+
+// ---------------- TABLES ------------------
+db.exec(`
+CREATE TABLE IF NOT EXISTS uploads (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  filename TEXT NOT NULL,
+  originalname TEXT NOT NULL,
+  mimetype TEXT,
+  uploaded_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS feedback (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  message TEXT NOT NULL,
+  date TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS chat_logs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_message TEXT NOT NULL,
+  bot_reply TEXT NOT NULL,
+  date TEXT NOT NULL
+);
+`);
+
+// ---------------- UPLOADS ------------------
+exports.saveUpload = (info) => {
+  const stmt = db.prepare(`INSERT INTO uploads (filename, originalname, mimetype, uploaded_at) VALUES (?, ?, ?, ?)`);
+  stmt.run(info.filename, info.originalname, info.mimetype, new Date().toISOString());
+};
+
+exports.getRecentUploads = () => {
+  const stmt = db.prepare(`SELECT * FROM uploads ORDER BY uploaded_at DESC LIMIT 5`);
+  return stmt.all();
+};
+
+exports.getUploadsCount = () => {
+  const stmt = db.prepare(`SELECT COUNT(*) AS count FROM uploads`);
+  return stmt.get().count;
+};
+
+// ---------------- FEEDBACK ------------------
+exports.saveFeedback = ({ name, email, message }) => {
+  const stmt = db.prepare(`INSERT INTO feedback (name, email, message, date) VALUES (?, ?, ?, ?)`);
+  stmt.run(name, email, message, new Date().toISOString());
+};
+
+exports.getFeedbackCount = () => {
+  const stmt = db.prepare(`SELECT COUNT(*) AS count FROM feedback`);
+  return stmt.get().count;
+};
+
+// ---------------- CHAT LOGS ------------------
+exports.saveChat = (userMsg, botReply) => {
+  const stmt = db.prepare(`INSERT INTO chat_logs (user_message, bot_reply, date) VALUES (?, ?, ?)`);
+  stmt.run(userMsg, botReply, new Date().toISOString());
+};
+
+module.exports = db;
